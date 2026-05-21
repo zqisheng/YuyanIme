@@ -6,6 +6,13 @@ plugins {
 android {
     compileSdk 36
     namespace 'com.yuyan'
+
+    packagingOptions {
+        jniLibs {
+            useLegacyPackaging = true   // 强制压缩 .so 文件，避免对齐问题
+        }
+    }
+
     defaultConfig {
         applicationId "com.yuyan.pinyin"
         minSdk 23
@@ -37,7 +44,7 @@ android {
 
     signingConfigs {
         release {
-            def keystorePropertiesFile = rootProject.file("keystore/keystore.properties")
+            def keystorePropertiesFile = rootProject.file("/Users/kele/StudioProjects/YuyanIme/keystore/keystore.properties ")
             def keystoreProperties = new Properties()
             if (keystorePropertiesFile.exists()) {
                 keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
